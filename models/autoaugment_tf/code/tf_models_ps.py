@@ -57,12 +57,12 @@ elif not args.workers:
 
 
 # Set SageMaker session & execution role
-bucket='sagemaker-us-west-2-442516601418'
+bucket='sagemaker-may29'
 sagemaker_session = sagemaker.Session(default_bucket=bucket)
 role = get_execution_role()
 
 # Set S3 path for data batches
-inputs = 's3://' + bucket + '/data/{}'.format(args.train_data)
+inputs = 's3://' + bucket + '/sagemaker/{}'.format(args.train_data)
 
 # Convert model_name and train_data to create S3 job name
 job_name_params = {'model_name': {'wrn': 'wrn',
