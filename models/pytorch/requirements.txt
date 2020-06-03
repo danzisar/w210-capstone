@@ -1,6 +1,7 @@
 numpy
 torch>=1.4.0
 torchvision
+tensorboard
 fvcore
 tqdm
 yacs
