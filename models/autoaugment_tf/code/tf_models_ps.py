@@ -103,7 +103,7 @@ estimator_ps = TensorFlow( base_job_name='{}-{}-{}'.format(job_name_params['mode
                                                            job_name_params['train_data'][args.train_data],
                                                            str(args.workers)),
                            train_max_run=48 * 60 * 60,
-                           source_dir='/home/ec2-user/SageMaker/w210-capstone/models/autoaugment_tf/code'
+                           source_dir='/home/ec2-user/SageMaker/w210-capstone/models/autoaugment_tf/code',
                            entry_point='train_cifar_ps.py',
                            role=role,
                            framework_version='1.13',
