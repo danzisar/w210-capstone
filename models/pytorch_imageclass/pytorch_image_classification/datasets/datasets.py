@@ -48,13 +48,15 @@ class CIFAR101_Dataset(Dataset):
         obj = s3.Object(bucket, label_filename)
         with io.BytesIO(obj.get()["Body"].read()) as f:
             f.seek(0)
-            self.y = np.load(f)
+            labels = np.load(f)
+            self.y = labels.astype('long')
             
         obj = s3.Object(bucket, image_filename)
         with io.BytesIO(obj.get()["Body"].read()) as f:
             f.seek(0)
             self.X = np.load(f)
-
+            
+        #transforms.Compose([transforms.ToTensor()])
         self.transforms = transform
 
     def __len__(self):
@@ -65,10 +67,12 @@ class CIFAR101_Dataset(Dataset):
         img = Image.fromarray(data)
         
         if self.transforms:
-            data = self.transforms(img) #.ToPILImage()(data)
+            img = self.transforms(img) 
             
         if self.y is not None:
             return (img, self.y[i])
+            #return self.transform(img), self.transform(self.y[index])
+        
         else:
             return img
 
