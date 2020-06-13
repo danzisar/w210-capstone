@@ -25,6 +25,10 @@ def _get_dataset_stats(
         # RGB
         mean = np.array([0.4914, 0.4822, 0.4465])
         std = np.array([0.2470, 0.2435, 0.2616])
+    elif name == 'CIFAR101':   # Added by W210 Team
+        # RGB
+        mean = np.array([0.4914, 0.4822, 0.4465])  # Should be based on training dataset
+        std = np.array([0.2470, 0.2435, 0.2616])
     elif name == 'CIFAR100':
         # RGB
         mean = np.array([0.5071, 0.4865, 0.4409])
