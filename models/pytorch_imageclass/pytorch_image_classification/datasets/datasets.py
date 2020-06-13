@@ -135,7 +135,7 @@ def create_dataset(config: yacs.config.CfgNode,
         cifar101_transform = create_transform(config, is_train=True)
         dataset = CIFAR101_Dataset('cifar10.1_v6', 
                                    'sagemaker-may29',
-                                   'sagemaker/cifar101/'',
+                                   'sagemaker/cifar101/',
                                    cifar101_transform)
         return dataset
     else:
