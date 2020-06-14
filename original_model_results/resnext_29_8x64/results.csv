@@ -1,0 +1,5 @@
+,Model,Testset,Epoch,Loss,Accuracy,Original_Accuracy,Original_CI
+0,resnext_29_8x64d,cifar10,100,0.4673,0.8432,96.2,"(95.8, 96.6)"
+1,resnext_29_8x64d,cifar10,200,0.2246,0.9324,96.2,"(95.8, 96.6)"
+2,resnext_29_8x64d,cifar10,300,0.1457,0.9568,96.2,"(95.8, 96.6)"
+3,resnext_29_8x64d,cifar10.1,300,0.3615,0.893,90.0,"(88.6, 91.2)"
