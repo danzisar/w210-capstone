@@ -1,3 +1,4 @@
 ,Model,Testset,Epoch,Loss,Accuracy,Original_Accuracy,Original_CI
 0,resnet_basic_32,cifar10,100,0.3604,0.917,92.5,"(92.0, 93.0)"
 1,resnet_basic_32,cifar10,160,0.4011,0.9232,92.5,"(92.0, 93.0)"
+2,resnet_basic_32,cifar10.1,160,0.8051,0.832,84.9,"(83.2, 86.4)"
