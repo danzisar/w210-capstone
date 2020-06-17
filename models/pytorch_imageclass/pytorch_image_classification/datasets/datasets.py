@@ -75,6 +75,50 @@ class CIFAR101_Dataset(Dataset):
         
         else:
             return img
+        
+# Added by W210 Team
+# Class to define custom torchvision dataset for CIFAR 10.1 test set
+class CIFAR10_RA_3_5_Dataset(Dataset):
+    def __init__(self, file, s3bucket, s3path, transform=None):
+        self.samples = list(range(1, 101))
+        label_filename = s3path + 'cifar10.1_v6_labels.npy'
+        image_filename = s3path + file 
+        
+        s3 = boto3.resource('s3')
+        
+        obj = s3.Object(s3bucket, label_filename)
+        with io.BytesIO(obj.get()["Body"].read()) as f:
+            f.seek(0)
+            labels = np.load(f)
+            labels = labels.astype('long')
+            self.y = labels[:100]
+            
+        obj = s3.Object(s3bucket, image_filename)
+        with io.BytesIO(obj.get()["Body"].read()) as f:
+            f.seek(0)
+            self.X = np.load(f)
+            
+        #transforms.Compose([transforms.ToTensor()])
+        self.transforms = transform
+
+    def __len__(self):
+        return len(self.X)
+
+    def __getitem__(self, i):
+        data = self.X[i]
+        img = Image.fromarray(data)
+        
+        if self.transforms:
+            img = self.transforms(img) 
+            
+        if self.y is not None:
+            return (img, self.y[i])
+            #return self.transform(img), self.transform(self.y[index])
+        
+        else:
+            return img
+        
+        
 
 def create_dataset(config: yacs.config.CfgNode,
                    is_train: bool) -> Union[Tuple[Dataset, Dataset], Dataset]:
@@ -141,6 +185,14 @@ def create_dataset(config: yacs.config.CfgNode,
                                    'sagemaker-may29',
                                    'sagemaker/cifar101/',
                                    cifar101_transform)
+        return dataset
+    elif config.dataset.name == "CIFAR10_RA_3_5":
+        print("CIFAR 10 Random Augmentation N=3 M=5")
+        ra_transform = create_transform(config, is_train=True)
+        dataset = CIFAR10_RA_3_5_Dataset('cifar_RA_100.npy', 
+                                   'sagemaker-may29',
+                                   'sagemaker/RandAugmentation/',
+                                   ra_transform)       
         return dataset
     else:
         raise ValueError()
