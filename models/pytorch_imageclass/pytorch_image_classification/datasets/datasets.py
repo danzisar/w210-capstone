@@ -78,7 +78,7 @@ class CIFAR101_Dataset(Dataset):
         
 # Added by W210 Team
 # Class to define custom torchvision dataset for CIFAR 10.1 test set
-class CIFAR10_RA_3_5_Dataset(Dataset):
+class CIFAR10_RA_Dataset(Dataset):
     def __init__(self, file, s3bucket, s3path, transform=None):
         self.samples = list(range(1, 101))
         label_filename = s3path + 'cifar10.1_v6_labels.npy'
@@ -186,10 +186,11 @@ def create_dataset(config: yacs.config.CfgNode,
                                    'sagemaker/cifar101/',
                                    cifar101_transform)
         return dataset
-    elif config.dataset.name == "CIFAR10_RA_3_5":
-        print("CIFAR 10 Random Augmentation N=3 M=5")
+    # ELIF added by W210 Team
+    elif config.dataset.name == "CIFAR10_RA_2_5":
+        print("CIFAR 10 Random Augmentation N=2 M=5")
         ra_transform = create_transform(config, is_train=True)
-        dataset = CIFAR10_RA_3_5_Dataset('cifar_RA_100.npy', 
+        dataset = CIFAR10_RA_Dataset('cifar10_ra_2_5.npy', 
                                    'sagemaker-may29',
                                    'sagemaker/RandAugmentation/',
                                    ra_transform)       
