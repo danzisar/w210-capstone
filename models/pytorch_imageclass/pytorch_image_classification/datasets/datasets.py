@@ -80,8 +80,8 @@ class CIFAR101_Dataset(Dataset):
 # Class to define custom torchvision dataset for CIFAR 10.1 test set
 class CIFAR10_RA_Dataset(Dataset):
     def __init__(self, file, s3bucket, s3path, transform=None):
-        self.samples = list(range(1, 101))
-        label_filename = s3path + 'cifar10.1_v6_labels.npy'
+        self.samples = list(range(1, 50001))
+        label_filename = s3path + 'cifar10_labels.npy'
         image_filename = s3path + file 
         
         s3 = boto3.resource('s3')
@@ -90,8 +90,7 @@ class CIFAR10_RA_Dataset(Dataset):
         with io.BytesIO(obj.get()["Body"].read()) as f:
             f.seek(0)
             labels = np.load(f)
-            labels = labels.astype('long')
-            self.y = labels[:100]
+            self.y = labels.astype('long').flatten()
             
         obj = s3.Object(s3bucket, image_filename)
         with io.BytesIO(obj.get()["Body"].read()) as f:
@@ -99,7 +98,8 @@ class CIFAR10_RA_Dataset(Dataset):
             self.X = np.load(f)
             
         #transforms.Compose([transforms.ToTensor()])
-        self.transforms = transform
+        print(self.X.shape)
+        self.transform = transform
 
     def __len__(self):
         return len(self.X)
@@ -108,8 +108,9 @@ class CIFAR10_RA_Dataset(Dataset):
         data = self.X[i]
         img = Image.fromarray(data)
         
-        if self.transforms:
-            img = self.transforms(img) 
+        if self.transform:
+            print("self.transforms:", self.transform)
+            img = self.transform(img) 
             
         if self.y is not None:
             return (img, self.y[i])
@@ -155,7 +156,6 @@ def create_dataset(config: yacs.config.CfgNode,
                 lengths = [train_num, val_num]
                 train_subset, val_subset = torch.utils.data.dataset.random_split(
                     dataset, lengths)
-
                 train_transform = create_transform(config, is_train=True)
                 val_transform = create_transform(config, is_train=False)
                 train_dataset = SubsetDataset(train_subset, train_transform)
@@ -188,12 +188,31 @@ def create_dataset(config: yacs.config.CfgNode,
         return dataset
     # ELIF added by W210 Team
     elif config.dataset.name == "CIFAR10_RA_2_5":
-        print("CIFAR 10 Random Augmentation N=2 M=5")
-        ra_transform = create_transform(config, is_train=True)
-        dataset = CIFAR10_RA_Dataset('cifar10_ra_2_5.npy', 
-                                   'sagemaker-may29',
-                                   'sagemaker/RandAugmentation/',
-                                   ra_transform)       
-        return dataset
+        if is_train:
+            ra_transform = create_transform(config, is_train=True)
+            dataset = CIFAR10_RA_Dataset('cifar10_ra_2_5.npy',
+                                         'sagemaker-may29',
+                                         'sagemaker/RandAugmentation/',
+                                         transform=None)
+            val_ratio = config.train.val_ratio
+            assert val_ratio < 1
+            val_num = int(len(dataset) * val_ratio)
+            train_num = len(dataset) - val_num
+            lengths = [train_num, val_num]
+            train_subset, val_subset = torch.utils.data.dataset.random_split(dataset, lengths)
+            train_transform = create_transform(config, is_train=True)
+            val_transform = create_transform(config, is_train=False)
+            train_dataset = SubsetDataset(train_subset, train_transform)
+            val_dataset = SubsetDataset(val_subset, val_transform)
+            return train_dataset, val_dataset
+                
+        else:
+            print("CIFAR 10 Random Augmentation N=2 M=5")
+            ra_transform = create_transform(config, is_train=False)
+            dataset = CIFAR10_RA_Dataset('cifar10_ra_2_5.npy',
+                                         'sagemaker-may29',
+                                         'sagemaker/RandAugmentation/',
+                                         ra_transform)
+            return dataset
     else:
         raise ValueError()
