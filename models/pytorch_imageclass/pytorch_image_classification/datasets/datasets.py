@@ -214,5 +214,35 @@ def create_dataset(config: yacs.config.CfgNode,
                                          'sagemaker/RandAugmentation/',
                                          ra_transform)
             return dataset
+    
+    # ELIF added by W210 Team to add randAugment with N=2, M=20
+    elif config.dataset.name == "CIFAR10_RA_2_20":
+        if is_train:
+            ra_transform = create_transform(config, is_train=True)
+            dataset = CIFAR10_RA_Dataset('cifar10_ra_2_20.npy',
+                                         'sagemaker-may29',
+                                         'sagemaker/RandAugmentation/',
+                                         transform=None)
+            val_ratio = config.train.val_ratio
+            assert val_ratio < 1
+            val_num = int(len(dataset) * val_ratio)
+            train_num = len(dataset) - val_num
+            lengths = [train_num, val_num]
+            train_subset, val_subset = torch.utils.data.dataset.random_split(dataset, lengths)
+            train_transform = create_transform(config, is_train=True)
+            val_transform = create_transform(config, is_train=False)
+            train_dataset = SubsetDataset(train_subset, train_transform)
+            val_dataset = SubsetDataset(val_subset, val_transform)
+            return train_dataset, val_dataset
+                
+        else:
+            print("CIFAR 10 Random Augmentation N=2 M=20")
+            ra_transform = create_transform(config, is_train=False)
+            dataset = CIFAR10_RA_Dataset('cifar10_ra_2_20.npy',
+                                         'sagemaker-may29',
+                                         'sagemaker/RandAugmentation/',
+                                         ra_transform)
+            return dataset
+    
     else:
         raise ValueError()
