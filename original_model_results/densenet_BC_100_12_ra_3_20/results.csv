@@ -1,0 +1,7 @@
+,Model,Epoch,Testset,Loss,Accuracy,Original_Accuracy,Original_CI
+0,densenet_BC_100_12_ra_3_20,400,cifar10,1.6702,0.7115,95.5,"(95.1, 95.9)"
+1,densenet_BC_100_12_ra_3_20,300,cifar10,1.5314,0.714,95.5,"(95.1, 95.9)"
+2,densenet_BC_100_12_ra_3_20,400,cifar10.1,2.3261,0.5795,87.6,"(86.1, 89.0)"
+3,densenet_BC_100_12_ra_3_20,300,cifar10.1,2.2312,0.5845,87.6,"(86.1, 89.0)"
+4,densenet_BC_100_12_ra_3_20_refined400,50,cifar10.1,0.7156,0.8095,87.6,"(86.1, 89.0)"
+5,densenet_BC_100_12_ra_3_20_refined400,50,cifar10,0.3489,0.9076,95.5,"(95.1, 95.9)"
