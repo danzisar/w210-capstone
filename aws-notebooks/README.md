@@ -11,4 +11,4 @@ Four models were the focus of our exploration:
 The naming convention used for the notebooks is significant:
   - Model Name
   - Optional:  Augmentation Indicator (e.g., ra_2_5, ra_3_20)
-  - Optional:  'c10val' indicates that unaugmented data was used for the validation phase of epochs trained on augmented data.
+  - Optional:  *c10val* indicates that unaugmented data was used for the validation phase of epochs trained on augmented data.
