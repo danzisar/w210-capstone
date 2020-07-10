@@ -3,7 +3,7 @@ import torch
 
 def compute_accuracy(config, outputs, targets, augmentation, topk=(1, )):
     if augmentation:
-        if config.augmentation.use_mixup or config.augmentation.use_cutmix:
+        if config.augmentation.use_mixup or config.augmentation.use_cutmix or "CIFAR10_CM" in config.dataset.name: # Added by W210 Team - or statement
             targets1, targets2, lam = targets
             accs1 = accuracy(outputs, targets1, topk)
             accs2 = accuracy(outputs, targets2, topk)
@@ -11,6 +11,9 @@ def compute_accuracy(config, outputs, targets, augmentation, topk=(1, )):
                 lam * acc1 + (1 - lam) * acc2
                 for acc1, acc2 in zip(accs1, accs2)
             ])
+            if "CIFAR10_CM" in config.dataset.name: # Added by W210 Team - or statement
+                acc1, acc2 = accs
+                accs = (acc1.mean(), acc2.mean())
         elif config.augmentation.use_ricap:
             weights = []
             accs_all = []
