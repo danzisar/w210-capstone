@@ -29,6 +29,15 @@ def _get_dataset_stats(
         # RGB
         mean = np.array([0.4914, 0.4822, 0.4465])  # Should be based on training dataset
         std = np.array([0.2470, 0.2435, 0.2616])
+    elif name == 'CIFAR10_2k':  # Added by W210 Team
+        # RGB
+        mean = np.array([0.4914, 0.4822, 0.4465])
+        std = np.array([0.2470, 0.2435, 0.2616])
+    elif name == 'CIFAR10_CM_1':   # Added by W210 Team
+        # RGB
+        mean = np.array([0.48900609, 0.47970164, 0.47680734])  # Should be based on training dataset
+        std = np.array([0.16860414, 0.17559971, 0.18220738])
+        
     elif name == 'CIFAR10_RA_2_5':   # Added by W210 Team
         # RGB
         mean = np.array([0.48169277, 0.47972626, 0.46786197])  # Should be based on training dataset
@@ -44,6 +53,29 @@ def _get_dataset_stats(
         mean = np.array([0.60252478, 0.6022783, 0.59686454])  # Should be based on training dataset
         std = np.array([0.11540394, 0.11270143, 0.11942429])
 
+    elif name == 'CIFAR101_RA_1_20':  # Added by W210 Team
+        std = np.array([0.5720768, 0.56465674, 0.54534674])
+        mean = np.array([0.16938294, 0.16641179, 0.17129586])
+    elif name == 'CIFAR101_RA_2_20':  # Added by W210 Team
+        std = np.array([0.60339547, 0.60351885, 0.59763299])
+        mean = np.array([0.13662655, 0.13409996, 0.1415314])
+    elif name == 'CIFAR101_RA_3_20':  # Added by W210 Team
+        std = np.array([0.60806673, 0.6066123, 0.60138855])
+        mean = np.array([0.11522382, 0.1132553,  0.1194451])
+    elif name == 'CIFAR101_RA_2_5':  # Added by W210 Team
+        std = np.array([0.48399701, 0.47999693, 0.46704372])
+        mean = np.array([0.15088125, 0.14923236, 0.15124402])
+        
+    elif name == 'CIFAR10_CM_1':  # Added by W210 Team
+        std = np.array([0.48900609, 0.47970164, 0.47680734])
+        mean = np.array([0.16860414, 0.17559971, 0.18220738])
+    elif name == 'CIFAR10_CM_.5':  # Added by W210 Team
+        std = np.array([0.4890093, 0.47970309, 0.4768041])
+        mean = np.array([0.16148799, 0.16867248, 0.17584336])
+    elif name == 'CIFAR10_CM_.25':  # Added by W210 Team
+        std = np.array([0.48900969, 0.47970441, 0.47680566])
+        mean = np.array([0.15818763, 0.16574074, 0.17315236])
+        
     elif name == 'CIFAR100':
         # RGB
         mean = np.array([0.5071, 0.4865, 0.4409])

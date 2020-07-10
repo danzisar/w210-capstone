@@ -31,6 +31,20 @@ def cutmix(
 
     return data, targets
 
+# Function added by W210 Team
+def w210_cutmix(
+    batch: Tuple[torch.Tensor, torch.Tensor]
+) -> Tuple[torch.Tensor, Tuple[torch.Tensor, torch.Tensor, float]]:
+    data, targets = batch
+    
+    #print("w210_cutmix:", targets, type(targets), type(targets[0]))
+    orig_targets = np.array([np.long(x[0]) for x in targets])
+    shuffled_targets = np.array([np.long(x[1]) for x in targets])
+    lam = np.array([x[2] for x in targets])
+
+    targets = (torch.from_numpy(orig_targets), torch.from_numpy(shuffled_targets), torch.from_numpy(lam))
+
+    return data, targets
 
 class CutMixCollator:
     def __init__(self, config: yacs.config.CfgNode):
@@ -40,5 +54,8 @@ class CutMixCollator:
         self, batch: List[Tuple[torch.Tensor, int]]
     ) -> Tuple[torch.Tensor, Tuple[torch.Tensor, torch.Tensor, float]]:
         batch = torch.utils.data.dataloader.default_collate(batch)
-        batch = cutmix(batch, self.alpha)
+        # Changes by W210 Team begin on line above
+        batch = w210_cutmix(batch)
+        #batch = cutmix(batch, self.alpha)
+        # End changes by W210
         return batch

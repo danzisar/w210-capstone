@@ -15,7 +15,7 @@ def create_loss(config: yacs.config.CfgNode) -> Tuple[Callable, Callable]:
         train_loss = MixupLoss(reduction='mean')
     elif config.augmentation.use_ricap:
         train_loss = RICAPLoss(reduction='mean')
-    elif config.augmentation.use_cutmix:
+    elif config.augmentation.use_cutmix or "CIFAR10_CM" in config.dataset.name: # Added by W210 Team - or statement
         train_loss = CutMixLoss(reduction='mean')
     elif config.augmentation.use_label_smoothing:
         train_loss = LabelSmoothingLoss(config, reduction='mean')

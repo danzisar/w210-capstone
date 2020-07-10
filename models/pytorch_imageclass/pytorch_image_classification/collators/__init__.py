@@ -13,7 +13,7 @@ def create_collator(config: yacs.config.CfgNode) -> Callable:
         return MixupCollator(config)
     elif config.augmentation.use_ricap:
         return RICAPCollator(config)
-    elif config.augmentation.use_cutmix:
+    elif config.augmentation.use_cutmix or "CIFAR10_CM" in config.dataset.name: # Added by W210 Team - or statement 
         return CutMixCollator(config)
     else:
         return torch.utils.data.dataloader.default_collate
