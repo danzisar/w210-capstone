@@ -93,6 +93,7 @@ def send_targets_to_device(config, targets, device):
         t1, t2, lam = targets
         targets = (t1.to(device), t2.to(device), lam)
     elif "CIFAR10_CM" in config.dataset.name: # Added by W210 Team 
+        t1, t2, lam = targets
         targets = (t1.to(device), t2.to(device), lam.to(device)) 
     elif config.augmentation.use_ricap:
         labels, weights = targets
