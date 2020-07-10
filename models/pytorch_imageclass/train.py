@@ -92,6 +92,8 @@ def send_targets_to_device(config, targets, device):
     if config.augmentation.use_mixup or config.augmentation.use_cutmix:
         t1, t2, lam = targets
         targets = (t1.to(device), t2.to(device), lam)
+    elif "CIFAR10_CM" in config.dataset.name: # Added by W210 Team 
+        targets = (t1.to(device), t2.to(device), lam.to(device)) 
     elif config.augmentation.use_ricap:
         labels, weights = targets
         labels = [label.to(device) for label in labels]
@@ -148,6 +150,8 @@ def train(epoch, config, model, optimizer, scheduler, loss_func, train_loader,
             outputs.append(output_chunk)
 
             loss = loss_func(output_chunk, target_chunk)
+            if "CIFAR10_CM" in config.dataset.name: # Added by W210 Team 
+                loss = loss.mean()
             losses.append(loss)
             with apex.amp.scale_loss(loss, optimizer) as scaled_loss:
                 scaled_loss.backward()
