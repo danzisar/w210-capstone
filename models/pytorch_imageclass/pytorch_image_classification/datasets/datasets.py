@@ -20,8 +20,8 @@ from pytorch_image_classification import create_transform
 
 # One variable to control the bucket setup for all W210 Data Sources
 # Must be set based on the Amazon Instance you are running on 
-w210_bucket = 'sagemaker-june29' # Added by W210 Team
-
+#w210_bucket = 'sagemaker-june29' # Added by W210 Team
+w210_bucket = 'sagemaker-may29' # Added by W210 Team
 
 class SubsetDataset(Dataset):
     def __init__(self, subset_dataset, transform=None):

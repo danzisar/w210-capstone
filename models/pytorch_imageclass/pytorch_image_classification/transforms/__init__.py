@@ -48,6 +48,11 @@ def _get_dataset_stats(
         mean = np.array([0.59741131, 0.59679988, 0.58773509])  # Should be based on training dataset
         std = np.array([0.13812994, 0.13592779, 0.14246847])
 
+    elif name == 'CIFAR10_RA_1_20':   # Added by W210 Team
+        # RGB
+        mean = np.array([0.57354213, 0.57000099, 0.55356753])  # Should be based on training dataset
+        std = np.array([0.16610077, 0.16351007, 0.16868175])
+
     elif name == 'CIFAR10_RA_3_20':   # Added by W210 Team
         # RGB
         mean = np.array([0.60252478, 0.6022783, 0.59686454])  # Should be based on training dataset
