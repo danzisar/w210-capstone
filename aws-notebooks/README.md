@@ -12,3 +12,5 @@ The naming convention used for the notebooks is significant:
   - Model Name
   - Optional:  Augmentation Indicator (e.g., ra_2_5, ra_3_20)
   - Optional:  'c10val' indicates that unaugmented data was used for the validation phase of epochs trained on augmented data.
+
+As an example, the file **resnet_basic_32_ra_2_20.ipynb** contains the code used to train the resnet_basic_32 model on a dataset that had been augmented using the RandAugment Algorithm with an N parameter of 2 and an M parameter of 20.
