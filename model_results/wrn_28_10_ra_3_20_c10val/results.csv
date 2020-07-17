@@ -1,0 +1,5 @@
+,Model,Epoch,Testset,Loss,Accuracy,Original_Accuracy,Original_CI
+0,wrn_28_10_ra_3_20_c10val,400,cifar10,1.018,0.7538,92.5,"(92.0, 93.0)"
+1,wrn_28_10_ra_3_20_c10val,400,cifar10.1,1.5923,0.6285,84.9,"(83.2, 86.4)"
+2,wrn_28_10_ra_3_20_c10val_refined400,50,cifar10.1,0.731,0.8415,84.9,"(83.2, 86.4)"
+3,wrn_28_10_ra_3_20_c10val_refined400,50,cifar10,0.3452,0.9204,92.5,"(92.0, 93.0)"
