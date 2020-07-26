@@ -6,8 +6,6 @@ In 2019, researchers from UC Berkeley created the CIFAR 10.1 test dataset to ass
  
 Contributors: Sarah Danzi, Jennifer Mahle, John Boudreaux
 
-Web Deliverable:  https://www.ischool.berkeley.edu/courses/project-gallery/284/2/2020
-
 The repository is organized into the following subdirectories:
   * **analysis** contains artifacts that document the various lines of exploration, investigation, and analysis that the team performed on the datasets and our results.  
   * **aws-notebooks** contains the artifacts developed on AWS to execute the training and testing of models.
@@ -18,3 +16,4 @@ The repository is organized into the following subdirectories:
 
 #### Links
 * [Final Report](https://docs.google.com/document/d/1B51_CuTtN47iD6n39JeM0KiFAwyoZMMRby2jW2rx5Ho/edit?usp=sharing)
+* [Web Deliverable](https://www.ischool.berkeley.edu/courses/project-gallery/284/2/2020)
