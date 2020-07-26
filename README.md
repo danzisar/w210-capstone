@@ -17,5 +17,4 @@ The repository is organized into the following subdirectories:
   * **models** contains implementations of the models we used during our research.
 
 #### Links
-* [Bibliography Doc](https://docs.google.com/document/d/1y_6kBx6VVBrR6Ogm2k1PSh38UZcCy9r_LDO-xfWG8uY/edit?usp=sharing)
-* [Model doc](https://docs.google.com/spreadsheets/d/1-kfa14aCt1s-ILADSTOUBz_LSwmurpzDZsj8bP5SVMo/edit?usp=sharing)
+* [Final Report](https://docs.google.com/document/d/1B51_CuTtN47iD6n39JeM0KiFAwyoZMMRby2jW2rx5Ho/edit?usp=sharing)
