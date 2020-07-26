@@ -24,5 +24,5 @@ Slight modifications to the original code were made to enable us to train and te
   - **pytorch_image_classification/collators/__init__.py**   
     Modifications were made to support CutMix  
     
-  - **pytorch_image_classification/transforms/__init__.py:**
+  - **pytorch_image_classification/transforms/__init__.py**
     Normalization values for each of the new datasets we created were added to this file
