@@ -8,7 +8,13 @@ Contributors: Sarah Danzi, Jennifer Mahle, John Boudreaux
 
 Web Deliverable:  https://www.ischool.berkeley.edu/courses/project-gallery/284/2/2020
 
-The repository is organized into the following subdirectories... 
+The repository is organized into the following subdirectories:
+  * **analysis** contains artifacts that document the various lines of exploration, investigation, and analysis that the team performed on the datasets and our results.  
+  * **aws-notebooks** contains the artifacts developed on AWS to execute the training and testing of models.
+  * **data** contains the raw data we used in support of our research.
+  * **dataset-generation** contains the utilities the team develoepd to generate augmented datasets.
+  * **model_results** contains exports of the results recorded during our experimental trials.
+  * **models** contains implementations of the models we used during our research.
 
 #### Links
 * [Bibliography Doc](https://docs.google.com/document/d/1y_6kBx6VVBrR6Ogm2k1PSh38UZcCy9r_LDO-xfWG8uY/edit?usp=sharing)
