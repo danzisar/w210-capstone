@@ -1,4 +1,4 @@
-# Targeting the distribution gap by data augmentation
+# Targeting the distribution gap using data augmentation
 
 Summer 2020 Capstone
  
