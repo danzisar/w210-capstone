@@ -1,4 +1,4 @@
-# Targeting the distribution gap by data augmentation
+# Targeting the distribution gap using data augmentation
 
 Summer 2020 Capstone
  
@@ -10,7 +10,7 @@ The repository is organized into the following subdirectories:
   * **analysis** contains artifacts that document the various lines of exploration, investigation, and analysis that the team performed on the datasets and our results.  
   * **aws-notebooks** contains the artifacts developed on AWS to execute the training and testing of models.
   * **data** contains the raw data we used in support of our research.
-  * **dataset-generation** contains the utilities the team develoepd to generate augmented datasets.
+  * **dataset_generation** contains the utilities the team develoepd to generate augmented datasets.
   * **model_results** contains exports of the results recorded during our experimental trials.
   * **models** contains implementations of the models we used during our research.
 
